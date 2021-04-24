@@ -3,7 +3,7 @@ import time
 import collections
 import numpy as np
 
-from handler import img_recover
+from handler import img_recover, background
 
 PATH = '../../Data/'
 FILE = '1556158515.bin'
@@ -14,12 +14,6 @@ IMAGE_WIDTH = 240
 # 20181226180237_15_15_uint16_amp0(存在问题) 20190124114254_12_14_uint16_amp0
 
 
-class Background:
-    def __init__(self, length):
-        self.length = length
-        self.background = collections.deque([], maxlen=length)
-
-
 def display(vid='others', verbose=False):
     print('{} video is displaying now!'.format(vid.title()))
 
@@ -28,6 +22,8 @@ def display(vid='others', verbose=False):
         file = open(file_path, 'rb')
     elif vid.lower() == 'own':
         capture = cv2.VideoCapture(PATH+FILE)
+
+    bg = background.Background(length=20)
 
     cnt = 0
     try:
@@ -54,6 +50,9 @@ def display(vid='others', verbose=False):
 
             img_rgb_re = cv2.applyColorMap(img_re, cv2.COLORMAP_JET)
             cv2.imshow("vid_rgb", np.hstack([img_rgb, img_rgb_re]))
+
+            if bg.update(img_re):
+                cv2.imshow("background", bg.bg)
 
             cv2.waitKey(FRAME_RATE)
 
