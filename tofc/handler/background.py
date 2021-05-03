@@ -3,13 +3,14 @@ import numpy as np
 
 
 class Background:
+    # TODO：每次将背景乘上α衰减因子，再加上新的背景
     def __init__(self, length=20, depth=80):
         self.length = length
         self.depth = depth
         self.__bg_deque = collections.deque(maxlen=length)
         self.__cnt = 0
         self.bg = np.array([]).astype(np.uint8)
-        self.active = False  # If there is an initial frame of background
+        self.active = False  # 是否存在可用的初始背景
 
     def __inert(self, frame, depth):
         assert str(type(frame)) == "<class 'numpy.ndarray'>"

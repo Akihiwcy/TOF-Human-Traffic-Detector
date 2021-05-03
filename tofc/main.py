@@ -4,4 +4,4 @@ from start import display
 vid = 'others'
 
 if __name__ == '__main__':
-    display(vid)
+    display(vid, verbose=True)
