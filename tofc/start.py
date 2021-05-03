@@ -102,12 +102,12 @@ def display(vid='others', verbose=True):
                         if len(tracks) > 0:
                             for t in tracks:
                                 old_index, new_index = 0, 1
-                                if len(t) > 3 and t[-1][1] >= 120 and t[-2][1] <= 120:
+                                if len(t) > 3 and t[-1][1] >= IMAGE_WIDTH / 2 >= t[-2][1]:
                                     people_count += 1
                                     # print('TrackToCount:', tracks[i])
                                     # print('count + : ', people_count)
                                     # print('------------------------------------')
-                                elif len(t) > 3 and t[-1][1] <= 120 and t[-2][1] >= 120:
+                                elif len(t) > 3 and t[-1][1] <= IMAGE_WIDTH / 2 <= t[-2][1]:
                                     people_count -= 1
                                     # print('TrackToCount:', tracks[i])
                                     # print('count - : ', people_count)
