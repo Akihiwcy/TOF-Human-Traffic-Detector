@@ -1,2 +1,2 @@
 # TOF-Human-Traffic-Detector
-Rearrange my TOFCounting repository
+Human traffic detector based on Time-of-Flight 3D depth video
